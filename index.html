@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Role Authority Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Auth Screen -->
+  <div id="authScreen" class="auth-overlay">
+    <div class="auth-card">
+      <h2>Authority Portal Sign In</h2>
+      <input type="text" id="authUsername" placeholder="Username">
+      <input type="password" id="authPin" placeholder="Account PIN / Password">
+      <input type="email" id="authEmail" placeholder="Secret Owner Security Email">
+      <button class="btn-primary" id="authSubmitBtn">Verify Credentials</button>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">⚡ Master Role Authority Portal</div>
+    <div class="user-bar">
+      <span id="userDisplay" style="font-weight: 700; display: flex; align-items: center; gap: 8px;"></span>
+      <button class="btn-secondary" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <div class="panel-card">
+      <h3>Role Privilege Selector</h3>
+      <p style="font-size:0.85rem; color: var(--text-muted);">
+        Select a rank and enter the security passcode to activate your role badge across the platform.
+      </p>
+
+      <div class="role-selector-group">
+        <label>Choose Privilege Rank:</label>
+        <select id="roleSelect">
+          <option value="owner">👑 Owner Rank</option>
+          <option value="admin">🛡️ Admin Rank</option>
+          <option value="moderator">⚔️ Moderator Rank</option>
+        </select>
+      </div>
+
+      <input type="password" id="rolePasscode" placeholder="Enter Role Passcode">
+
+      <div class="action-buttons">
+        <button class="btn-owner-grant" id="applyRoleBtn">Grant Selected Role</button>
+        <button class="btn-owner-revoke" id="revokeRoleBtn">Revoke All Roles</button>
+      </div>
+
+      <div id="roleNotice" style="margin-top: 10px; font-weight: 700; font-size: 0.9rem;"></div>
+    </div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
